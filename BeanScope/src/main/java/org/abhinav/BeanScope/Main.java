@@ -43,3 +43,40 @@ public class Main {
         System.out.println(orderService == orderService1);
     }
 }
+/*
+Choosing between Singleton and Prototype beans depends entirely on whether your class needs to hold unique state for a specific task or user.
+
+When to use a Singleton Bean (Default)
+You should use a Singleton bean when your class is stateless or holds read-only, shared configuration.
+ This means the bean performs actions but doesn't store data that changes from one request to another.
+
+Core Use Cases: * Service layers (e.g., OrderService, UserService) containing pure business logic.
+
+Data Access Objects (DAOs) and Repositories (e.g., UserRepository).
+
+Controllers (e.g., @RestController entry points).
+
+Why: Creating only one instance saves massive amounts of memory and reduces CPU overhead because
+Spring doesn't have to keep rebuilding the object.
+
+When to use a Prototype Bean
+You should use a Prototype bean when your class is stateful—meaning it holds mutable, unique user data
+or operational data that cannot be safely shared across different threads.
+
+Core Use Cases:
+
+Multi-step data processors or multi-threaded tasks where each worker needs its own independent settings.
+
+Shopping carts or session-specific user buffers where data belongs strictly to one client interaction.
+
+File upload or report generation exports that track unique progress states (percentComplete, currentLine).
+
+Why: If multiple users tried to access a stateful object running as a Singleton, they would overwrite each
+other’s data, causing major concurrency bugs and data leaks.
+
+Rule of Thumb for Your Code Architecture
+Ask yourself: "If two different users execute a method on this bean at the exact same millisecond, will they
+corrupt each other's data?" * If No, make it a Singleton.
+
+If Yes (because it updates class-level instance fields), make it a Prototype.
+ */
