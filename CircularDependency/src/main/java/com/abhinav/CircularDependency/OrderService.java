@@ -12,7 +12,7 @@ public class OrderService {
      Spring Core allows circular dependency; however, Spring Boot doesn't allow the circular dependency.
      For a good scalable application there should be no separate dependencies as it is a paired code practice.
      As it Violates the SOLID Design principle and make the code tightly coupled
-     
+
      */
 
     private final PaymentService paymentService;
