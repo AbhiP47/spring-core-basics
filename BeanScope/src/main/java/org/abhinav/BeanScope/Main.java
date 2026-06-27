@@ -8,8 +8,18 @@ public class Main {
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
         /*
-        
+        If the scope of the order service is set to prototype, And we are not using the bean anywhere in our code.
+         Spring will not create the order service bean.
+        We can see this as we set the scope to prototype and do not use the bean order service created constructor, which will not be called.
+        This is because the prototype uses the lazy initialization technique for bean creation.
+        Lazy Initialization defers the creation of a bean until the exact moment it is explicitly requested
+        for the first time—either by calling context.getBean() or because another bean needs it injected as
+        a dependency.
+
+        Remember if we create an object by ourselves by using the new keyword or by using the @Bean annotation in AppConfig,
+         we can create multiple beans in the IOC container and the IOC container will manage all the beans.
          */
+
         OrderService orderService = context.getBean(OrderService.class);
 
         OrderService orderService1 = context.getBean(OrderService.class);
