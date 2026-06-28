@@ -1,6 +1,14 @@
 package org.abhinav;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class DatabseService {
+
+    public void destroy()
+    {
+        System.out.println("Releasing resources  pre destroying of database bean");
+    }
 }
 
 /*

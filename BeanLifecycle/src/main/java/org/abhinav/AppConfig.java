@@ -13,6 +13,12 @@ public class AppConfig {
     {
         return new CartService();
     }
+
+    @Bean(destroyMethod = "destroy")
+    public DatabseService databseService()
+    {
+        return new DatabseService();
+    }
 }
 /*
 
