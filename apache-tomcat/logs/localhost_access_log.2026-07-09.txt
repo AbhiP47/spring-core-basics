@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [09/Jul/2026:00:11:26 +0530] "GET /servlet-crud-app/users?name=abhinav&email=abhi@gmail.com&mobile=1234567890&id=1 HTTP/1.1" 500 1365
+0:0:0:0:0:0:0:1 - - [09/Jul/2026:00:12:20 +0530] "POST /servlet-crud-app/users?name=abhinav&email=abhi@gmail.com&mobile=1234567890&id=1 HTTP/1.1" 201 45
+0:0:0:0:0:0:0:1 - - [09/Jul/2026:00:29:15 +0530] "POST /servlet-crud-app/users?name=abhinav%20panwar&email=abhi@gmail.comghgn&mobile=1234567867&id=2 HTTP/1.1" 201 45
+0:0:0:0:0:0:0:1 - - [09/Jul/2026:00:29:26 +0530] "GET /servlet-crud-app/users HTTP/1.1" 200 204
