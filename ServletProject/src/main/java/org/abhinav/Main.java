@@ -327,3 +327,42 @@ Request → Tomcat → DispatcherServlet (the only registered servlet)
         the single DispatcherServlet.
 
  */
+
+
+/*
+DispatcherServlet is the front controller of a Spring MVC/Spring Boot application — a single servlet
+that receives every incoming HTTP request and delegates it to the appropriate component for processing.
+
+It extends HttpServlet, so at its core, it's still a regular servlet — just a very smart one provided
+by Spring.
+In Spring Boot, it's auto-configured and auto-registered with the embedded Tomcat (mapped to / by default)
+ — you don't set it up manually.
+
+    Request Flow
+
+
+ Client Request
+     ↓
+DispatcherServlet (single entry point)
+     ↓
+HandlerMapping → finds the right Controller method for the URL
+     ↓
+Controller (@RestController/@Controller) → executes business logic
+     ↓
+Returns response data (JSON) or ModelAndView (for JSP/Thymeleaf)
+     ↓
+(If view-based) ViewResolver → resolves the actual view to render
+     ↓
+Response sent back to Client
+
+In short, DispatcherServlet:
+
+Intercepts all incoming requests
+Finds the matching @Controller/@RestController method using HandlerMapping
+Invokes that method and gets the result
+Converts the result to the response (JSON via HttpMessageConverter, or resolves a view via ViewResolver)
+Sends the final response back to the client
+
+Why it matters: It centralizes request handling, so you never write raw servlets — you just write @Controller
+ classes, and DispatcherServlet handles all the routing and coordination internally.
+ */
