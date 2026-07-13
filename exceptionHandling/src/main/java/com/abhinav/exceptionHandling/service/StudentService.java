@@ -8,6 +8,8 @@ import com.abhinav.exceptionHandling.dto.CreateStudentResponseDto;
 import com.abhinav.exceptionHandling.dto.UpdateStudentRequestDto;
 import com.abhinav.exceptionHandling.dto.UpdateStudentResponseDto;
 import com.abhinav.exceptionHandling.entity.Student;
+import com.abhinav.exceptionHandling.exception.DuplicateResourceException;
+import com.abhinav.exceptionHandling.exception.ResourceNotFoundException;
 import com.abhinav.exceptionHandling.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
