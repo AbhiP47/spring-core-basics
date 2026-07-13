@@ -1,5 +1,9 @@
 package com.abhinav.exceptionHandling.controller;
 
+import com.abhinav.exceptionHandling.dto.CreateStudentRequestDto;
+import com.abhinav.exceptionHandling.dto.CreateStudentResponseDto;
+import com.abhinav.exceptionHandling.dto.UpdateStudentRequestDto;
+import com.abhinav.exceptionHandling.dto.UpdateStudentResponseDto;
 import com.abhinav.exceptionHandling.service.StudentService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
