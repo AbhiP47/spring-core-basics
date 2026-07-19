@@ -3,31 +3,31 @@ package com.abhinav.springBootFilters.filters;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.UUID;
 
+@Order(1)
 @Component
-public class RequestFilter implements Filter {
+public class ResponseHeaderFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 
-//        httpServletRequest.getInputStream();
+        String uri = httpServletRequest.getRequestURI();
 
-        BufferedReader bufferedReader = httpServletRequest.getReader();
-
-        StringBuilder body = new StringBuilder();
-        String line =bufferedReader.readLine();
-
-        while(line != null)
+        if(!uri.startsWith("/api/"))
         {
-            body.append(line);
-            line = bufferedReader.readLine();
+            filterChain.doFilter(servletRequest,servletResponse);
         }
-        System.out.println(body);
+
+        String id = UUID.randomUUID().toString();
+        httpServletResponse.setHeader("x-request-id",id);
+
+        filterChain.doFilter(servletRequest,servletResponse);
 
     }
 }
