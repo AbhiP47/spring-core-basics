@@ -22,8 +22,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<StudentResponseDto
-            > createStudent(@RequestBody Student student) {
+    public ResponseEntity<StudentResponseDto> createStudent(@RequestBody Student student) {
         studentService.createStudent(student);
         StudentResponseDto responseDto = new StudentResponseDto();
         responseDto.setName(student.getName());
