@@ -1,29 +1,34 @@
 package com.abhinav.filters.entity;
 
 public class Student {
-    private int email;
-    private int name;
+    private int id;
+    private String email;
+    private String name;
 
-    public int getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
-    public Student setName(int name) {
-        this.name = name;
+    public Student setId(int id) {
+        this.id = id;
         return this;
     }
 
-    public int getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public Student setEmail(int email) {
+    public Student setEmail(String email) {
         this.email = email;
         return this;
     }
 
-    public Student(int name, int email) {
+    public String getName() {
+        return name;
+    }
+
+    public Student setName(String name) {
         this.name = name;
-        this.email = email;
+        return this;
     }
 }
