@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,7 +15,17 @@ public class LoggingInterceptor implements HandlerInterceptor {
    public boolean preHandle(HttpServletRequest request,
                             HttpServletResponse response,
                             Object handler) throws Exception {
-        System.out.println("Pre Handled Called");
+
+        if(handler instanceof HandlerMethod handlerMethod) {
+            HandlerMethod method = (HandlerMethod) handler;
+
+            String controllerName = method.getBeanType().getName();
+            String methodName = method.getMethod().getName();
+
+            System.out.println("Pre Handled Called");
+            System.out.println("Controller name " + controllerName);
+            System.out.println("Method name " + methodName);
+        }
         return true;
     }
 
