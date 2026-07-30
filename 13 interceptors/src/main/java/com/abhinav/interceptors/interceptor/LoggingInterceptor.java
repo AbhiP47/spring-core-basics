@@ -16,15 +16,23 @@ public class LoggingInterceptor implements HandlerInterceptor {
                             HttpServletResponse response,
                             Object handler) throws Exception {
 
+        System.out.println("Pre Handled Called");
+
+        System.out.println("Incoming Request....");
+        System.out.println("HTTP Method: "+request.getMethod());
+        System.out.println("Request URI: "+request.getRequestURI());
+        System.out.println("Request Parameters: "+request.getQueryString());
+        System.out.println("Client IP: "+request.getRemoteAddr());
+        System.out.println("Token Header: "+request.getHeader("token"));
+
         if(handler instanceof HandlerMethod handlerMethod) {
             HandlerMethod method = (HandlerMethod) handler;
 
             String controllerName = method.getBeanType().getName();
             String methodName = method.getMethod().getName();
 
-            System.out.println("Pre Handled Called");
-            System.out.println("Controller name " + controllerName);
-            System.out.println("Method name " + methodName);
+            System.out.println("Controller name : " + controllerName);
+            System.out.println("Method name : " + methodName);
         }
         return true;
     }
@@ -43,5 +51,6 @@ public class LoggingInterceptor implements HandlerInterceptor {
                                 Object handler,
                                 @Nullable Exception ex) throws Exception {
         System.out.println("After Completion called");
+        System.out.println("Response Status : "+response.getStatus());
     }
 }
