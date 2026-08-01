@@ -10,6 +10,9 @@ public class Main {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         StudentRepository studentRepository = new StudentRepository();
-        studentRepository.createUser();
+//        studentRepository.createUser();
+
+        studentRepository.getStudentById(1L);
+        studentRepository.completeCRUD();
     }
 }
