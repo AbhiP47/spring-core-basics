@@ -75,5 +75,32 @@ public class LoggingAspect {
         }
     }
 
+    @Around(
+            value = "execution(* com.abhinav.aop.service.StudentService.dummyMethod(..))")
+    public Object logAroundMethod2(ProceedingJoinPoint joinPoint) throws Throwable {
 
+//       Object[] arr =  joinPoint.getArgs();
+//
+//       String originalString = (String) arr[0];
+//
+//       String modifiedString = originalString.toUpperCase();
+//
+//       Object[] modifiedArr = {
+//               modifiedString
+//       };
+//
+//       String returnType = (String) joinPoint.proceed(modifiedArr);
+//
+//       returnType = returnType + " : String Intercepted";
+//
+//       return returnType;
+
+        Object return1 = joinPoint.proceed();
+
+        System.out.println("Intercepted request calliong again");
+
+        Object return2 = joinPoint.proceed();
+
+        return return2;
+    }
 }

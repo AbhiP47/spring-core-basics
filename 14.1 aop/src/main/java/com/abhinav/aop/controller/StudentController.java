@@ -22,9 +22,9 @@ public class StudentController {
         return ResponseEntity.ok(s);
     }
 
-//    @GetMapping
-//    public ResponseEntity<String> dummyMethod() {
-//        String s = "aditya";
-//        return ResponseEntity.ok(studentService.dummyMethod(s));
-//    }
+    @GetMapping
+    public ResponseEntity<String> dummyMethod() {
+        String s = "aditya";
+        return ResponseEntity.ok(studentService.dummyMethod(s));
+    }
 }
