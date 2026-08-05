@@ -1,0 +1,79 @@
+package com.abhinav.aop.aspect;
+
+import com.abhinav.aop.model.Student;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
+import org.springframework.stereotype.Component;
+
+@Component
+@Aspect
+public class LoggingAspect {
+
+    @Before("execution(* com.abhinav.aop.service.StudentService.createStudent(..))")
+    public void logBefore(JoinPoint joinPoint)
+    {
+
+        Object[] arr = joinPoint.getArgs();
+        System.out.println("Student is going to be saved");
+
+//        boolean allowed = false;
+//
+//        if(!allowed)
+//        {
+//            throw new RuntimeException("Method Execution not allowed");
+//        }
+
+    }
+
+        @AfterReturning(
+       value = "execution(* com.abhinav.aop.service.StudentService.createStudent(..))",
+       returning = "result")
+    public void logAfterReturningMethod(Student result) {
+        System.out.println("logAfterReturningMethod called");
+
+        result.setName("Rohit");
+        result.setAge(21);
+            System.out.println(result.toString());
+        System.out.println("Intercepted createStudent()");
+    }
+
+    @AfterThrowing(
+            value = "execution(* com.abhinav.aop.service.StudentService.createStudent(..))",
+            throwing = "exception")
+    public void logAfterThrowingMethod(RuntimeException exception) {
+        System.out.println("Exception type: " + exception.getClass().getName());
+        System.out.println("Exception Message: " + exception.getMessage());
+    }
+
+    @After(
+            value = "execution(* com.abhinav.aop.service.StudentService.createStudent(..))")
+    public void logAfterMethod() {
+        System.out.println("logAfterMethod executed");
+    }
+
+
+    @Around(
+            value = "execution(* com.abhinav.aop.service.StudentService.createStudent(..))")
+    public Object logAroundMethod(ProceedingJoinPoint joinPoint) throws Throwable {
+        System.out.println("Starting :" + joinPoint.getSignature().getName());
+
+        try {
+            Object result = joinPoint.proceed();
+
+            System.out.println("Execution Successful");
+
+            return result;
+        }
+        catch(Exception e) {
+            System.out.println("Execution Failed: " + e.getMessage());
+            throw e;
+        }
+
+        finally {
+            System.out.println("Execution Completed");
+        }
+    }
+
+
+}

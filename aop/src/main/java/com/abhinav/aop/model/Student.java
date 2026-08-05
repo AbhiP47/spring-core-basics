@@ -2,9 +2,7 @@ package com.abhinav.aop.model;
 
 public class Student {
     private String name;
-    private int age;
-    private int rollNo;
-    private String message;
+    private Integer age;
 
     public String getName() {
         return name;
@@ -22,19 +20,11 @@ public class Student {
         this.age = age;
     }
 
-    public int getRollNo() {
-        return rollNo;
-    }
-
-    public void setRollNo(int rollNo) {
-        this.rollNo = rollNo;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

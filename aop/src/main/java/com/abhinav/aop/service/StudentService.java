@@ -1,8 +1,15 @@
 package com.abhinav.aop.service;
 
 import com.abhinav.aop.model.Student;
+import org.springframework.stereotype.Service;
 
-public interface StudentService {
+@Service
+public class StudentService {
+    public Student createStudent(Student student) {
+        System.out.println("Student saved");
 
-    void createStudent(Student student);
+//        throw new RuntimeException("Some error Occured");
+
+        return student;
+    }
 }
