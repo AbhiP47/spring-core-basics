@@ -3,12 +3,14 @@ package com.abhinav.springsecurity.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Builder
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
