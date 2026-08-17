@@ -28,8 +28,9 @@ public class AuthService {
         user.setUsername(requestDto.getUsername());
         String encodedPassword = passwordEncoder.encode(requestDto.getPassword());
         user.setPassword(encodedPassword);
-        Optional<Role> role = roleRepository.findByName("ROLE_USER");
-        user.getRoles().add(role.get());
+        Role role = roleRepository.findByName("ROLE_USER").get();
+
+        user.getRoles().add(role);
 
         userRepository.save(user);
 
