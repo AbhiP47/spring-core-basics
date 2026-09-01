@@ -23,9 +23,7 @@ public class TransferService {
     @Transactional
     public void transfer(Long fromAccountId,
                          Long toAccountId,
-                         BigDecimal amount)
-
-    {
+                         BigDecimal amount) throws InterruptedException {
         Account fromAccount =
                 accountRepository.findById(fromAccountId)
                         .orElseThrow(()-> new RuntimeException("User not found"));
@@ -35,6 +33,7 @@ public class TransferService {
                         .orElseThrow(()-> new RuntimeException("User not found"));
 
         fromAccount.debitAccount(amount);
+        Thread.sleep(2000);
         toAccount.creditAccount(amount);
 
         transferRepository.save(
