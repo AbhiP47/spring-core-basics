@@ -4,6 +4,8 @@ import com.abhinav.transactions.entity.Order;
 import com.abhinav.transactions.entity.PaymentAudit;
 import com.abhinav.transactions.repository.PaymentAuditRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PaymentAuditService {
@@ -14,6 +16,10 @@ public class PaymentAuditService {
         this.paymentAuditRepository = paymentAuditRepository;
     }
 
+
+    @Transactional(
+            propagation = Propagation.REQUIRED
+    )
     public void audit(Order order) {
 
         PaymentAudit paymentAudit =
